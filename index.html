@@ -238,7 +238,7 @@
   .contenido {
     opacity: 0;
     transition: opacity 1.2s;
-    padding: 40px 20px 100px;
+    padding: 40px 20px 40px;
     position: relative;
     z-index: 2;
   }
@@ -352,8 +352,9 @@
     border-radius: 50%;
     border: 8px solid var(--dorado);
     box-shadow:
-          0 0 0 12px rgba(45, 80, 22, 0.5),        
-          0 0 0 14px var(--dorado);  /* anillo dorado exterior */
+      0 0 0 12px rgba(45, 80, 22, 0.5),        
+      0 0 0 14px var(--dorado);  /* anillo dorado exterior */
+      
     animation: girarVinilo 20s linear infinite;
     position: relative;
     z-index: 1;
@@ -388,6 +389,61 @@
     color: var(--verde-pantano);
     margin-bottom: 10px;
     text-shadow: 2px 2px 0 var(--dorado);
+  }
+    .btn-copiar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    background: linear-gradient(135deg, var(--verde-pantano), var(--verde-oscuro));
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    border-radius: 40px;
+    padding: 10px 22px;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 18px rgba(74, 124, 46, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-copiar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.3), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-copiar:hover::before { opacity: 1; }
+  .btn-copiar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(74, 124, 46, 0.55);
+    color: var(--beige);
+  }
+  .btn-copiar:active {
+    transform: translateY(0) scale(0.97);
+  }
+  .btn-copiar .icono-copiar {
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+  }
+  .btn-copiar:hover .icono-copiar {
+    transform: rotate(-10deg) scale(1.15);
+  }
+  .btn-copiar.copiado {
+    background: linear-gradient(135deg, #4a7c2e, #1a4d0e);
+    color: #fff;
+    border-color: #fff;
+    animation: pulsoCopiado 0.5s ease-out;
+  }
+  @keyframes pulsoCopiado {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
   }
   .tarjeta-sub {
     color: var(--marron);
@@ -628,6 +684,60 @@
   .music-control:hover { transform: scale(1.1); }
   .music-control.pausado { opacity: 0.6; }
 
+  /* Créditos del diseñador */
+  .creditos {
+    text-align: center;
+    margin: 30px auto 0;
+    padding: 20px 20px 10px;
+    max-width: 500px;
+    border-top: 2px solid rgba(107, 68, 35, 0.3);
+    font-family: 'MedievalSharp', cursive;
+  }
+  .creditos p {
+    color: var(--marron);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .creditos .credito-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px 0;
+    transition: transform 0.3s;
+  }
+  .creditos .credito-link:hover {
+    transform: scale(1.05);
+  }
+      .icono-whatsapp-emoji {
+    font-size: 1.3rem;
+    display: inline-block;
+    vertical-align: middle;
+    filter: hue-rotate(90deg); /* opcional: tinte verde */
+  }
+  .creditos .credito-link:hover .icono-whatsapp {
+    fill: var(--dorado);
+  }
+  .credito-nombre {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1rem;
+    color: var(--verde-pantano);
+    text-shadow: 1px 1px 0 var(--dorado);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .creditos .credito-link:hover .credito-nombre {
+    color: var(--dorado);
+    text-shadow: 1px 1px 0 var(--verde-oscuro);
+  }
+  .credito-cta {
+    font-size: 0.75rem !important;
+    margin-top: 12px !important;
+    opacity: 0.6 !important;
+  }
+
   @media (max-width: 500px) {
     .tarjeta { margin: 30px 15px; padding: 25px 18px; }
     .foto-principal img { width: 260px; height: 260px; }
@@ -638,7 +748,6 @@
 </style>
 </head>
 <body>
-
 <!-- ═══════════════════════════════════════════════════════════
      SOBRE QUE SE ABRE (pantalla de apertura)
      ═══════════════════════════════════════════════════════════ -->
@@ -748,6 +857,18 @@
     <div class="mensaje" id="mensajeFinal"></div>
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
+  <!-- Créditos del diseñador -->
+<footer class="creditos">
+  <h5>Diseño y desarrollo web por</h5>
+    <a href="https://wa.me/522206478867?text=Hola,%20vi%20la%20invitaci%C3%B3n%20del%20baby%20shower%20y%20me%20interes%C3%B3%20el%20dise%C3%B1o" target="_blank" rel="noopener" class="credito-link">
+  <span class="credito-nombre">Luis Ivan Ortiz Duran</span>
+  <svg class="icono-whatsapp" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="11" fill="#25D366"/>
+    <path d="M12 5c-3.9 0-7 3.1-7 7 0 1.3.3 2.5 1 3.6L5 19l3.5-.9c1 .6 2.2 1 3.5 1 3.9 0 7-3.1 7-7s-3.1-7-7-7z" fill="#fff"/>
+    <path d="M9.5 8.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1 0 1.3 1 2.5 1.1 2.6.1.2 1.8 2.9 4.5 3.9 2.2.8 2.7.7 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3-.3-.1-1.5-.7-1.8-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.7-.2-.4-.4-.4-.6-.4h-.5z" fill="#25D366"/>
+  </svg>
+  </a>
+</footer>
 </div>
 
 <!-- Control de música -->
