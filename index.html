@@ -819,7 +819,7 @@
       <div class="simbolo">🚫</div>
       <div class="texto">
         <strong>PROHIBIDO VESTIR DE VERDE</strong>
-        ¡No queremos confundirte con Shrek! 🧅
+        ¡No queremos confundirte con los nuevos papás! 🤰🫃
       </div>
     </div>
   </div>
@@ -857,6 +857,13 @@
     <div class="mensaje" id="mensajeFinal"></div>
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
+
+     <!-- Control de música (ahora estático) -->
+  <div class="music-control-contenedor">
+    <button class="music-control" id="musicControl" title="Música on/off">🔊</button>
+    <span class="music-control-texto">Música de fondo</span>
+  </div>
+  
   <!-- Créditos del diseñador -->
 <footer class="creditos">
   <h5>Diseño y desarrollo web por</h5>
@@ -1004,8 +1011,16 @@ CONFIG.vestimenta.forEach(url => {
 // });
 
 // Botón WhatsApp
-const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia con mi nombre al Baby Shower ${CONFIG.nombreBebe} 😉💛`);
-document.getElementById('btnWhatsapp').href = `https://wa.me/${CONFIG.whatsapp}?text=${mensaje}`;
+const mensaje = encodeURIComponent(
+  "¡Hola! Confirmo mi asistencia al Baby Shower.🤰🏻🎉\n\n" +
+  "Invitado: (escribe tu nombre aquí)👋🏻\n\n" +
+  "Acompañantes:👥\n" +
+  "1.- nombre  \n" +
+  "2.- nombre  \n" +
+  "¡Nos vemos!"
+);
+const btnWhatsapp = document.getElementById('btnWhatsapp');
+if (btnWhatsapp) btnWhatsapp.href = `https://api.whatsapp.com/send?phone=${CONFIG.whatsapp}&text=${mensaje}`;
 
 // ═══════════════════════════════════════════════════════════
 // Contador regresivo
